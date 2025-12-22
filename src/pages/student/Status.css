@@ -1,0 +1,18 @@
+.status-container {
+  padding: 32px;
+}
+.status-loading {
+  color: #888;
+}
+.status-error {
+  color: #c00;
+  font-weight: bold;
+}
+.status-eligible {
+  color: green;
+  font-weight: bold;
+}
+.status-not-eligible {
+  color: red;
+  font-weight: bold;
+}
