@@ -10,12 +10,24 @@ import {
 
 export const studentService = {
   async getRequirements(): Promise<Requirement[]> {
-    return apiFetch<Requirement[]>("/student/requirements");
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return [
+      { id: "req-1", title: "Final Thesis", description: "Submit your final thesis PDF" },
+      { id: "req-2", title: "Clearance Form", description: "Library and Hostel clearance" },
+      { id: "req-3", title: "Fee Receipt", description: "Proof of final tuition payment" },
+    ];
+    // return apiFetch<Requirement[]>("/student/requirements");
   },
 
   async uploadDocument(
     data: StudentDocumentUploadRequest
   ): Promise<StudentDocumentResponse> {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    return {
+      id: `doc-${Date.now()}`,
+      status: "PENDING",
+    };
+    /*
     const formData = new FormData();
     formData.append("file", data.file);
     formData.append("requirementId", data.requirementId);
@@ -28,13 +40,21 @@ export const studentService = {
       },
       false
     );
+    */
   },
 
   async getDocuments(): Promise<StudentDocument[]> {
-    return apiFetch<StudentDocument[]>("/student/documents");
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return [
+      { id: "doc-1", requirementTitle: "Final Thesis", status: "APPROVED", reviewComment: "Great work" },
+      { id: "doc-2", requirementTitle: "Clearance Form", status: "PENDING", reviewComment: null },
+    ];
+    // return apiFetch<StudentDocument[]>("/student/documents");
   },
 
   async getGraduationStatus(): Promise<GraduationStatus> {
-    return apiFetch<GraduationStatus>("/student/graduation-status");
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return { eligible: false };
+    // return apiFetch<GraduationStatus>("/student/graduation-status");
   },
 };

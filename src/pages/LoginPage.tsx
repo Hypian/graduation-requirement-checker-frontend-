@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginPage: React.FC = () => {
-  const { login, error, loading } = useAuth();
+  const { login, error, loading, user } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
@@ -17,6 +20,16 @@ const LoginPage: React.FC = () => {
     await login(email, password);
   };
 
+  useEffect(() => {
+    if (user) {
+      if (user.role === "ADMIN") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/student/dashboard");
+      }
+    }
+  }, [user, navigate]);
+
   return (
     <div
       style={{
@@ -27,7 +40,14 @@ const LoginPage: React.FC = () => {
         borderRadius: 8,
       }}
     >
-      <h2>Login</h2>
+      <h2>Graduation Requirement Checker Login</h2>
+      <p style={{ marginBottom: 20, fontSize: "0.9em", color: "#666" }}>
+        <strong>Unified Login Portal</strong>
+        <br />
+        Admins: Use an email containing "admin" (e.g., admin@test.com)
+        <br />
+        Students: Use any other email (e.g., student@test.com)
+      </p>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 16 }}>
           <label>Email</label>
