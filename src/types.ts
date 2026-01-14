@@ -14,6 +14,12 @@ export interface AuthLoginRequest {
   password: string;
 }
 
+export interface AuthRegisterRequest {
+  fullName: string;
+  email: string;
+  password: string;
+}
+
 export interface AuthLoginResponse {
   token: string;
   user: User;

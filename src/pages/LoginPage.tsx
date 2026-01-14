@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const LoginPage: React.FC = () => {
@@ -78,6 +78,10 @@ const LoginPage: React.FC = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
+      <div style={{ marginTop: 20, textAlign: "center", fontSize: "0.9em" }}>
+        Don't have an account? <Link to="/signup">Create one</Link>
+      </div>
+
     </div>
   );
 };

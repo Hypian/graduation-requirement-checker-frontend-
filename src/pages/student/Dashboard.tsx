@@ -1,8 +1,27 @@
 import React from "react";
+import { useAuth } from "../../AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const StudentDashboard: React.FC = () => {
-  // TODO: Fetch and display graduation requirement checklist and submission status
-  return <div>Student Dashboard (checklist/status coming soon)</div>;
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  return (
+    <div style={{ padding: 20 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <h2>Student Dashboard</h2>
+        <button onClick={handleLogout} style={{ padding: "8px 16px", cursor: "pointer" }}>
+          Logout
+        </button>
+      </div>
+      <div>(checklist/status coming soon)</div>
+    </div>
+  );
 };
 
 export default StudentDashboard;

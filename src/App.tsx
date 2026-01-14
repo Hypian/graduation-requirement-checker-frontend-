@@ -5,6 +5,7 @@ import { ErrorBoundary } from "./ErrorBoundary";
 // Page imports (to be created)
 // Placeholder imports for pages
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
+const SignUpPage = React.lazy(() => import("./pages/SignUpPage"));
 const StudentDashboard = React.lazy(() => import("./pages/student/Dashboard"));
 const StudentUploadDocuments = React.lazy(
   () => import("./pages/student/UploadDocuments")
@@ -45,6 +46,14 @@ function AppRoutes() {
         element={
           <React.Suspense fallback={<div>Loading...</div>}>
             <LoginPage />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <SignUpPage />
           </React.Suspense>
         }
       />

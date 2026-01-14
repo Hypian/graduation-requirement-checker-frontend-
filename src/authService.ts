@@ -25,6 +25,13 @@ export const authService = {
     return mockResponse;
   },
 
+  async register(data: any): Promise<void> {
+    // MOCK REGISTER
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate delay
+    console.log("Registered user:", data);
+    // In a real app, this might automatically login or just return success
+  },
+
   async getMe(): Promise<User> {
     // MOCK GET ME
     await new Promise((resolve) => setTimeout(resolve, 300));
